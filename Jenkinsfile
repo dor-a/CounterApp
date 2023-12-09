@@ -20,8 +20,6 @@ pipeline {
         stage('Preping ENV') {
             steps {
                 script {
-                    println $GWBT_BRANCH
-
                     println "BRANCH_NAME = ${params.BRANCH_NAME}"
                     println "DOCKER-IMAGE = ${APPLICATION_NAME}:${BUILD_TAG}"
                 }
