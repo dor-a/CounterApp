@@ -6,7 +6,7 @@ counter = 0
 
 @app.route("/", methods=["GET"])
 def main():
-    return render_template("home.html")
+    return render_template("home.html"), 200
 
 
 @app.route("/post", methods=["POST", "GET"])
