@@ -64,7 +64,7 @@ stage('Check Application Status') {
         script {
             retry(3) {
                 sleep 10
-                String status = sh(script: "curl -X GET -sLI -w '200' http://localhost:$PORT-o /dev/null", returnStdout: true).trim()
+                String status = sh(script: "curl -X GET -sLI -w '200' http://localhost:$PORT -o /dev/null", returnStdout: true).trim()
 
                 if (status != "200") {
                     error("Returned status code = $status when checking http://localhost:$PORT")
