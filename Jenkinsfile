@@ -11,6 +11,7 @@ pipeline {
     PORT = "5000"
     BRANCH_NAME = "${params.BRANCH_NAME}"
     BUILD_TAG = "${params.BRANCH_NAME}_${BUILD_NUMBER}"
+    GIT = "https://github.com/dor-a/CounterApp.git"
   }
   stages {
     stage('Preping ENV') {
@@ -27,6 +28,9 @@ pipeline {
       steps {
           echo "Please Note that Build is happen inside the Dockerfile"
            {
+            sh "git clone -b $BRANCH_NAME $GIT $APPLICATION_NAME"
+            sh "cd $APPLICATION_NAME"
+            sh "ls"
             sh "docker image build -f Dockerfile -t $APPLICATION_NAME:$BUILD_TAG ."
           }
       }
