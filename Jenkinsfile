@@ -4,7 +4,7 @@ pipeline {
     environment {
         APPLICATION_NAME = "counterapp"
         PORT = "5000"
-        BRANCH_NAME = "${params.BRANCH_NAME}"
+       // BRANCH_NAME = "${params.BRANCH_NAME}"
         BUILD_TAG = "${params.BRANCH_NAME}_${BUILD_NUMBER}"
         GIT = "https://github.com/dor-a/CounterApp.git"
     }
@@ -17,6 +17,14 @@ pipeline {
             }
         }
 
+        stage('Extract Branch Name') {
+            steps {
+                script {
+                    def branch = env.BRANCH_NAME.tokenize('/')[-1]
+                    echo "Building branch: ${branch}"
+                }
+            }
+        }
         stage('Preping ENV') {
             steps {
                 script {
